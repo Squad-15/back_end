@@ -3,6 +3,7 @@ package com.jota_nunes_back_end.jotanunes.service;
 import com.jota_nunes_back_end.jotanunes.models.UserAccount;
 import com.jota_nunes_back_end.jotanunes.repositories.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,9 +14,23 @@ public class UserAccountService {
     @Autowired
     private UserAccountRepository userAccountRepository;
 
+    @Autowired
+    private PasswordService passwordService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
     public UserAccount createUser(UserAccount user) {
+        // generate register number
         String nextRegisterNumber = generateNextRegisterNumber();
         user.setNumberRegister(nextRegisterNumber);
+
+        // generate password and Crypt
+        String rawPassword = passwordService.generateRandomPassword(6);
+        String encodedPassword = passwordEncoder.encode(rawPassword);
+        user.setPassword(encodedPassword);
+
+        System.out.println("Senha temporária do usuário: " + rawPassword);
         return userAccountRepository.save(user);
     }
 
