@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class JotanunesApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(JotanunesApplication.class, args);
 	}
-
 }
