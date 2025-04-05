@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class UserAccountService {
@@ -21,21 +22,26 @@ public class UserAccountService {
     private String generateNextRegisterNumber() {
         Optional<UserAccount> lastUser = userAccountRepository.findTopByOrderByNumberRegisterDesc();
 
-        int nextNumber = 1;
+        int nextSequence = 1;
 
         if (lastUser.isPresent()) {
             String lastRegister = lastUser.get().getNumberRegister();
+
+            String baseNumber = lastRegister.substring(0, 5);
+
             try {
-                nextNumber = Integer.parseInt(lastRegister) + 1;
+                nextSequence = Integer.parseInt(baseNumber) + 1;
             } catch (NumberFormatException e) {
                 throw new IllegalStateException("Número de registro inválido no banco de dados: " + lastRegister);
             }
         }
 
-        if (nextNumber > 999999) {
-            throw new IllegalStateException("Limite de matrículas atingido");
+        if (nextSequence > 99999) {
+            throw new IllegalStateException("Limite de registros atingido");
         }
 
-        return String.format("%06d", nextNumber);
+        int randomDigit = new Random().nextInt(10);
+        return String.format("%05d%d", nextSequence, randomDigit);
     }
+
 }
