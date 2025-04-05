@@ -18,7 +18,6 @@ public class Profile {
     // Constructor empty
     public Profile() {}
 
-
     // Getter and Setter
     public Profile(ProfileName profileName) {
         this.profileName = profileName;

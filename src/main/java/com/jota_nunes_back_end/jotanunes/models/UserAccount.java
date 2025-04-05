@@ -13,13 +13,13 @@ public class UserAccount {
 
     private String email;
 
-    private long numberRegister;
+    private String numberRegister;
 
     private String password;
 
     public UserAccount() {}
 
-    public UserAccount(String username, String email, long numberRegister, String password) {
+    public UserAccount(String username, String email, String numberRegister, String password) {
         this.username = username;
         this.email = email;
         this.numberRegister = numberRegister;
@@ -50,11 +50,11 @@ public class UserAccount {
         this.email = email;
     }
 
-    public long getNumberRegister() {
+    public String getNumberRegister() {
         return numberRegister;
     }
 
-    public void setNumberRegister(long numberRegister) {
+    public void setNumberRegister(String numberRegister) {
         this.numberRegister = numberRegister;
     }
 
