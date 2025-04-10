@@ -1,5 +1,6 @@
 package com.jota_nunes_back_end.jotanunes.models;
 
+import com.jota_nunes_back_end.jotanunes.enums.ProfileName;
 import jakarta.persistence.*;
 
 import java.util.List;

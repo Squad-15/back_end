@@ -1,4 +1,4 @@
-package com.jota_nunes_back_end.jotanunes.models;
+package com.jota_nunes_back_end.jotanunes.enums;
 
 public enum RoleUser {
     GESTOR, ALUNO, ADMIN
