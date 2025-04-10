@@ -16,7 +16,6 @@ public class PasswordService {
             int index = random.nextInt(CHARACTERS.length());
             password.append(CHARACTERS.charAt(index));
         }
-
         return password.toString();
 }
 }

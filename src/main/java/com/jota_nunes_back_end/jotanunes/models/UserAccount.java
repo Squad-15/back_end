@@ -17,13 +17,20 @@ public class UserAccount {
 
     private String password;
 
+    private String phone;
+
+    @Enumerated(EnumType.STRING)
+    private RoleUser roleUser;
+
     public UserAccount() {}
 
-    public UserAccount(String username, String email, String numberRegister, String password) {
+    public UserAccount(String username, String email, String numberRegister, String password, String phone, RoleUser roleUser) {
         this.username = username;
         this.email = email;
         this.numberRegister = numberRegister;
         this.password = password;
+        this.phone = phone;
+        this.roleUser = roleUser;
     }
 
     public long getId() {
@@ -64,6 +71,22 @@ public class UserAccount {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public RoleUser getRoleUser() {
+        return roleUser;
+    }
+
+    public void setRoleUser(RoleUser roleUser) {
+        this.roleUser = roleUser;
     }
 
     @ManyToOne
