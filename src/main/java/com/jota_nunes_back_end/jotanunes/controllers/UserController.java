@@ -1,7 +1,7 @@
 package com.jota_nunes_back_end.jotanunes.controllers;
 
 import com.jota_nunes_back_end.jotanunes.models.UserAccount;
-import com.jota_nunes_back_end.jotanunes.service.UserAccountService;
+import com.jota_nunes_back_end.jotanunes.services.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

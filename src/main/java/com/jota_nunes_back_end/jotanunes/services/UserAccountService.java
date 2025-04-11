@@ -1,4 +1,4 @@
-package com.jota_nunes_back_end.jotanunes.service;
+package com.jota_nunes_back_end.jotanunes.services;
 
 import com.jota_nunes_back_end.jotanunes.models.UserAccount;
 import com.jota_nunes_back_end.jotanunes.repositories.UserAccountRepository;
