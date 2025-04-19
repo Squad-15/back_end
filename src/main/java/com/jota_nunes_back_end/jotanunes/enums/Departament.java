@@ -2,10 +2,9 @@ package com.jota_nunes_back_end.jotanunes.enums;
 
 public enum Departament {
     OBRAS,
-    TECNICO,
-    INSTALAÇOES,
+    INSTALAÇÕES,
     ADMINISTRATIVO,
-    LOGISTICA,
+    LOGÍSTICA,
     FINANCEIRO,
     RECURSOS_HUMANOS,
     PLANEJAMENTO,
@@ -13,7 +12,7 @@ public enum Departament {
     SUPRIMENTOS,
     QUALIDADE,
     SEGURANÇA,
-    TI,
-    JURIDICO,
-    MANUTENÇAO,
+    TÉCNOLOGIA_DA_INFORMAÇÃO,
+    JURÍDICO,
+    MANUTENÇÃO,
 }

@@ -1,5 +1,6 @@
 package com.jota_nunes_back_end.jotanunes.controllers;
 
+import com.jota_nunes_back_end.jotanunes.dtos.UserAccountDto;
 import com.jota_nunes_back_end.jotanunes.models.UserAccount;
 import com.jota_nunes_back_end.jotanunes.services.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,9 @@ public class UserController {
     private UserAccountService userAccountService;
 
     @PostMapping("/register")
-    public ResponseEntity<UserAccount> createUser(@RequestBody UserAccount userAccount) {
+    public ResponseEntity<UserAccount> createUser(@RequestBody UserAccountDto userAccountDto) {
         try {
-            UserAccount created = userAccountService.createUser(userAccount);
+            UserAccount created = userAccountService.createUser(userAccountDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(created);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

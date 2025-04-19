@@ -2,6 +2,8 @@ package com.jota_nunes_back_end.jotanunes.models;
 
 import com.jota_nunes_back_end.jotanunes.enums.RoleUser;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table (name = "user_account")
@@ -10,14 +12,25 @@ public class UserAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String username;
+    @NotBlank(message = "O campo nome é obrigatório.")
+    @Column(nullable = false)
+    private String firstName;
 
+    @NotBlank(message = "O campo sobrenome é obrigatório.")
+    @Column(nullable = false)
+    private String lastName;
+
+    @NotBlank(message = "O campo e-mail é obrigatório.")
+    @Email(message = "O e-mail é inválido.")
+    @Column(nullable = false, unique = true)
     private String email;
 
     private String numberRegister;
 
     private String password;
 
+    @NotBlank(message = "O campo telefone é obrigatório.")
+    @Column(nullable = false)
     private String phone;
 
     @Enumerated(EnumType.STRING)
@@ -25,8 +38,9 @@ public class UserAccount {
 
     public UserAccount() {}
 
-    public UserAccount(String username, String email, String numberRegister, String password, String phone, RoleUser roleUser) {
-        this.username = username;
+    public UserAccount(String firstName, String lastName, String email, String numberRegister, String password, String phone, RoleUser roleUser) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.numberRegister = numberRegister;
         this.password = password;
@@ -40,14 +54,6 @@ public class UserAccount {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {
@@ -82,6 +88,22 @@ public class UserAccount {
         this.phone = phone;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public RoleUser getRoleUser() {
         return roleUser;
     }
@@ -93,4 +115,13 @@ public class UserAccount {
     @ManyToOne
     @JoinColumn(name = "profile_id")
     private Profile profile;
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
 }
