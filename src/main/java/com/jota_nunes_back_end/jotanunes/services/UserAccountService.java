@@ -40,6 +40,9 @@ public class UserAccountService {
 
         // generate password and Crypt
         String rawPassword = passwordService.generateRandomPassword(6);
+
+        System.out.println("Raw password generated: " + rawPassword);
+
         String encodedPassword = passwordEncoder.encode(rawPassword);
         user.setPassword(encodedPassword);
 
