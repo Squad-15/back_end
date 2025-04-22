@@ -30,6 +30,7 @@ public class UserController {
             UserAccount created = userAccountService.createUser(userAccountDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(created);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

@@ -2,7 +2,7 @@ package com.jota_nunes_back_end.jotanunes.enums;
 
 public enum RoleUser {
     GESTOR("GESTOR"),
-    ALUNO("ALUNO"),
+    COLABORADOR("COLABORADOR"),
     ADMINISTRADOR("ADMINISTRADOR");
 
     private final String role;
