@@ -80,8 +80,8 @@ public class UserAccount implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.roleUser == RoleUser.ADMINISTRADOR) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_ALUNO"));
-        else return List.of(new SimpleGrantedAuthority("ROLE_ALUNO"));
+        if(this.roleUser == RoleUser.ADMINISTRADOR) return List.of(new SimpleGrantedAuthority("ROLE_ADMINISTRADOR"), new SimpleGrantedAuthority("ROLE_COLABORADOR"));
+        else return List.of(new SimpleGrantedAuthority("ROLE_COLABORADOR"));
     }
 
     public String getPassword() {
