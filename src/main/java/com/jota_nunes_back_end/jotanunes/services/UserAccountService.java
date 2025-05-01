@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -59,6 +60,43 @@ public class UserAccountService {
 
         // save user account
         return userAccountRepository.save(user);
+    }
+
+    public List<UserAccount> getAllUser() {
+       return userAccountRepository.findAll();
+    }
+
+    public Optional<UserAccount> getUserById(long id) {
+        return userAccountRepository.findById(id);
+    }
+
+    public UserAccount updateUser(Long id, UserAccountDto userAccountDto) {
+        return userAccountRepository.findById(id)
+                .map(user -> {
+                    user.setFirstName(userAccountDto.firstName);
+                    user.setLastName(userAccountDto.lastName);
+                    user.setEmail(userAccountDto.email);
+                    user.setPhone(userAccountDto.phone);
+                    user.setRoleUser(userAccountDto.roleUser);
+
+                    // Atualizar o perfil também, se quiser
+                    Profile profile = user.getProfile();
+                    if (profile != null) {
+                        profile.setProfileName(userAccountDto.cargo);
+                        profile.setDepartment(userAccountDto.departamento);
+                        profile.setTypeConnection(userAccountDto.typeconnection);
+                        profile.setDateAdmission(userAccountDto.dataAdmissao);
+                        profile.setLocation(userAccountDto.location);
+                        profileRepository.save(profile);
+                    }
+
+                    return userAccountRepository.save(user);
+                })
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+    }
+
+    public void deleteUser(Long id) {
+        userAccountRepository.deleteById(id);
     }
 
     private String generateNextRegisterNumber() {
