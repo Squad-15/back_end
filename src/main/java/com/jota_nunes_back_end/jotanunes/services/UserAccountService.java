@@ -79,7 +79,6 @@ public class UserAccountService {
                     user.setPhone(userAccountDto.phone);
                     user.setRoleUser(userAccountDto.roleUser);
 
-                    // Atualizar o perfil também, se quiser
                     Profile profile = user.getProfile();
                     if (profile != null) {
                         profile.setProfileName(userAccountDto.cargo);
