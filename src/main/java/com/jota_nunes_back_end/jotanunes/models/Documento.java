@@ -20,7 +20,11 @@ public class Documento {
 
     private String titulo;
 
-    private String url;
+    private String description;
+
+    private String url_video;
+
+    private String url_photo;
 
     private Integer ordem;
 
