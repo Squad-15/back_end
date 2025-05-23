@@ -161,4 +161,7 @@ public class UserAccount implements UserDetails {
         this.profile = profile;
     }
 
+    @OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
+    private List<CategoriaUsuario> categoriaUsuarios;
+
 }

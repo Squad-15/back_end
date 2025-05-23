@@ -7,9 +7,17 @@ import jakarta.persistence.*;
 public class CategoriaUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_categoria_usuario")
-    private Integer id;
+    @Column(name = "id_categoria")
+    private Integer id_categoria;
 
-    @Column(name = "nome", nullable = false, length = 255)
-    private String nome;
+    @Column(name = "id_usuario")
+    private Integer id_usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "user_account_id", nullable = false)
+    private UserAccount userAccount;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", nullable = false)
+    private Categorias categorias;
 }
