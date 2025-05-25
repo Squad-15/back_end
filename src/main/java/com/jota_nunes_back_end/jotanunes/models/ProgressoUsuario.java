@@ -34,9 +34,6 @@ public class ProgressoUsuario {
     @Column(name = "pontuacao_geral")
     private Integer pontuacaoGeral;
 
-    @Column(name = "tempo_online")
-    private Duration tempoOnline;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_trilha")
     private Trilha trilha;
