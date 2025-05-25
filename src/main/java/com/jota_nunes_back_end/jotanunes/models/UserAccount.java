@@ -1,5 +1,6 @@
 package com.jota_nunes_back_end.jotanunes.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jota_nunes_back_end.jotanunes.enums.RoleUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -162,6 +163,6 @@ public class UserAccount implements UserDetails {
     }
 
     @OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
+    @JsonIgnore // Através dessa anotação, a Lista de categoriaUsuarios nao ser mostrada na resposta JSON
     private List<CategoriaUsuario> categoriaUsuarios;
-
 }
