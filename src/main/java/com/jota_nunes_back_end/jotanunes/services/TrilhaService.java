@@ -27,7 +27,7 @@ public class TrilhaService {
     }
 
     public Trilha create(Trilha trilha) {
-        return (Trilha) trilhaRepository .save(trilha);
+        return (Trilha) trilhaRepository.save(trilha);
     }
 
     public Trilha update(Long id, Trilha trilhaData) {
