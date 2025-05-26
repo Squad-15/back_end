@@ -1,5 +1,6 @@
 package com.jota_nunes_back_end.jotanunes.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;

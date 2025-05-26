@@ -32,5 +32,4 @@ public class Trilha {
 
     @OneToMany(mappedBy = "trilha", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TrilhaModulo> modulos;
-
 }
