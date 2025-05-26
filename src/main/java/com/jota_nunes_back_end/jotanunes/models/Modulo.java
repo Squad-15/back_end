@@ -22,10 +22,10 @@ public class Modulo {
     private Integer id;
 
     @Column(name = "name", nullable = false, length = 255)
-    private String nome;
+    private String name;
 
     @Column(name = "description", nullable = false, length = 255)
-    private String descricao;
+    private String description;
 
     @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TrilhaModulo> trilhas;
