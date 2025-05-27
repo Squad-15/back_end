@@ -20,7 +20,7 @@ public class DocumentService {
                 .orElseThrow(() -> new RuntimeException("Documento no encontrado"));
     }
 
-    public Documento crate(Documento documento) {return (Documento) documentRepository.save(documento);}
+    public Documento create(Documento documento) {return (Documento) documentRepository.save(documento);}
 
     public Documento update(Long id, Documento documentoData) {
         Documento documento = findById(id);

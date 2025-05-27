@@ -1,5 +1,6 @@
 package com.jota_nunes_back_end.jotanunes.services;
 
+import com.jota_nunes_back_end.jotanunes.dtos.CategoryDto;
 import com.jota_nunes_back_end.jotanunes.models.Categorias;
 import com.jota_nunes_back_end.jotanunes.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,27 +15,26 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
 
 
-    public List<Categorias> listCategories() {
-        return categoryRepository.findAll();
+    public List<CategoryDto> listCategories() {return categoryRepository.findAll().stream().map(CategoryDto::new).toList();}
+
+    public Categorias findById(Long id) {
+        return (Categorias) categoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
     }
+
 
     public Categorias createCategory(Categorias categorias) {
         return categoryRepository.save(categorias);
     }
 
-    public Categorias updateCategory(Long id, Categorias newCategories) {
-        Categorias categoria = categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
+    public Categorias updateCategory(Long id, Categorias categoriasData) {
+        Categorias categorias = findById(id);
 
-        categoria.setName(newCategories.getName());
-        return categoryRepository.save(categoria);
+        categorias.setName(categoriasData.getName());
+        return categoryRepository.save(categorias);
     }
 
-    public void deleteCategories(Long id) {
-        if(!categoryRepository.existsById(id)) {
-            throw new RuntimeException("Categoria não encontrada");
-        }
-
+    public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
     }
 }
