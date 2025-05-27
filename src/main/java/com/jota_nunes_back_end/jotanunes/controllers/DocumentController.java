@@ -37,7 +37,7 @@ public class DocumentController {
 
     @PostMapping
     public ResponseEntity<Documento> createDocumentDto(@RequestBody @Valid Documento documento) {
-        Documento newDocumento = documentService.crate(documento);
+        Documento newDocumento = documentService.create(documento);
         return ResponseEntity.status(HttpStatus.CREATED).body(newDocumento);
     }
 
