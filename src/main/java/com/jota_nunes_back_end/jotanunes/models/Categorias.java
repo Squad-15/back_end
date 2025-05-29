@@ -1,5 +1,6 @@
 package com.jota_nunes_back_end.jotanunes.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +26,8 @@ public class Categorias {
     private String name;
 
     @OneToMany(mappedBy = "categorias")
+    @JsonIgnore
     private List<CategoriaUsuario> categoriaUsuarios;
 
+    public void setUser(UserAccount user) {}
 }

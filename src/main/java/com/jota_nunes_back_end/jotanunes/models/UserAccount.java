@@ -163,6 +163,7 @@ public class UserAccount implements UserDetails {
     }
 
     @OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
-    @JsonIgnore // Através dessa anotação, a Lista de categoriaUsuarios nao ser mostrada na resposta JSON
+
+    @JsonIgnore
     private List<CategoriaUsuario> categoriaUsuarios;
 }
