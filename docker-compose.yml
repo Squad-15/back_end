@@ -1,20 +1,6 @@
 version: "3.8"
 
 services:
-  postgres:
-    image: postgres:14
-    container_name: jotanunes-postgres
-    environment:
-      POSTGRES_DB: system
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    networks:
-      - jotanunes-network
-
   rabbitmq:
     image: rabbitmq:3-management
     container_name: jotanunes-rabbitmq
@@ -32,23 +18,25 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: jotanunes-app
+    restart: unless-stopped
     depends_on:
-      - postgres
       - rabbitmq
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
       - JWT_SECRET=my-secret-key
       - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
       - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
       - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - SUPABASE_PASSWORD=${SUPABASE_PASSWORD}
     ports:
-      - "8080:8080"
+      - "8081:8080" # Mudando a porta no host para 8081 para evitar conflitos
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
     networks:
       - jotanunes-network
 
 networks:
   jotanunes-network:
     driver: bridge
-
-volumes:
-  postgres-data:

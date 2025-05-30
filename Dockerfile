@@ -17,6 +17,12 @@ RUN ./mvnw install -DskipTests
 FROM eclipse-temurin:17-jre
 WORKDIR /app
 
+# Instalar pacotes necessários
+RUN apt-get update && \
+    apt-get install -y postgresql-client dnsutils curl iputils-ping netcat-openbsd traceroute && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # Copiar entrypoint
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

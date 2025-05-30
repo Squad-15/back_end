@@ -36,10 +36,17 @@ public class CloudinaryConfig {
             apiKey == null || apiKey.trim().isEmpty() ||
             apiSecret == null || apiSecret.trim().isEmpty()) {
             
-            String errorMsg = "Credenciais do Cloudinary não configuradas. Defina as variáveis de ambiente " +
-                             "CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY e CLOUDINARY_API_SECRET ou use o perfil de desenvolvimento.";
-            logger.severe(errorMsg);
-            throw new IllegalStateException(errorMsg);
+            String warnMsg = "Credenciais do Cloudinary não configuradas. Usando configuração para desenvolvimento.";
+            logger.warning(warnMsg);
+            
+            // Configuração para desenvolvimento/teste com valores fictícios
+            Map<String, String> mockConfig = new HashMap<>();
+            mockConfig.put("cloud_name", "dev-cloud");
+            mockConfig.put("api_key", "dev-key");
+            mockConfig.put("api_secret", "dev-secret");
+            
+            logger.info("Cloudinary configurado no modo de desenvolvimento");
+            return new Cloudinary(mockConfig);
         }
         
         Map<String, String> config = new HashMap<>();
