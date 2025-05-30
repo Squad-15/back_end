@@ -6,12 +6,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 
 @Entity
+@Data
 @Table(name = "categoria_trilha")
 public class CategoriaTrilha {
     @Id
@@ -20,8 +20,10 @@ public class CategoriaTrilha {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+//  @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_categoria", nullable = false)
-    private CategoriaUsuario categoriaUsuario;
+    private Categorias categoria;
+//    private CategoriaUsuario categoriaUsuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_trilha", nullable = false)
