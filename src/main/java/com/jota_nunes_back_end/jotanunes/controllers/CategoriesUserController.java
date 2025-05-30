@@ -8,9 +8,13 @@ import com.jota_nunes_back_end.jotanunes.repositories.CategoryUserRepository;
 import com.jota_nunes_back_end.jotanunes.repositories.UserAccountRepository;
 import com.jota_nunes_back_end.jotanunes.services.CategoryService;
 import com.jota_nunes_back_end.jotanunes.services.CategoryUserService;
+import com.jota_nunes_back_end.jotanunes.services.UserAccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,16 +24,6 @@ public class CategoriesUserController {
     private final CategoryRepository categoryRepository;
     private final CategoryUserRepository categoryUserRepository;
     private  CategoryService categoryService;
-
-//    public CategoriesUserController(CategoryService categoryService,
-//                                    UserAccountRepository userAccountRepository,
-//                                    CategoryRepository categoryRepository,
-//                                    CategoryUserRepository categoryUserRepository) {
-//        this.categoryService = categoryService;
-//        this.userAccountRepository = userAccountRepository;
-//        this.categoryRepository = categoryRepository;
-//        this.categoryUserRepository = categoryUserRepository;
-//    }
 
     private final CategoryUserService categoryUserService;
 
@@ -47,9 +41,15 @@ public class CategoriesUserController {
 
 
 
+//    @GetMapping
+//    public Optional<CategoriaUsuario> getCategories(@PathVariable int userId){
+//        return categoryUserService.listPerUser(Long.valueOf(userId));
+//    }
+
     @GetMapping
-    public Optional<CategoriaUsuario> getCategories(@PathVariable int userId){
-        return categoryUserService.listPerUser(Long.valueOf(userId));
+    public ResponseEntity<List<CategoriaUsuario>> getCategories(@PathVariable int userId){
+        List<CategoriaUsuario> categoriaUsuarios = categoryUserService.listPerUser(Long.valueOf(userId));
+        return ResponseEntity.ok(categoriaUsuarios);
     }
 
     @PostMapping("/{categoryId}")

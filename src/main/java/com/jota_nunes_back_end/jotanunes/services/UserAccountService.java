@@ -122,5 +122,4 @@ public class UserAccountService {
         int randomDigit = new Random().nextInt(10);
         return String.format("%05d%d", nextSequence, randomDigit);
     }
-
 }

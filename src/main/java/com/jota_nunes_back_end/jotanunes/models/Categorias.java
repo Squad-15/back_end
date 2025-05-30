@@ -25,9 +25,9 @@ public class Categorias {
     @Column(name = "nome", nullable = false, length = 100)
     private String name;
 
-    @OneToMany(mappedBy = "categorias")
-    @JsonIgnore
-    private List<CategoriaUsuario> categoriaUsuarios;
+//    @OneToMany(mappedBy = "categorias")
+//    @JsonIgnore
+//    private List<CategoriaUsuario> categoriaUsuarios;
 
-    public void setUser(UserAccount user) {}
+//    public void setUser(UserAccount user) {}
 }
