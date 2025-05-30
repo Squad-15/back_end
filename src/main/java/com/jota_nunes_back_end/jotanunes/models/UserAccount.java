@@ -162,6 +162,18 @@ public class UserAccount implements UserDetails {
         this.profile = profile;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categorias categoria;
+
+    public Categorias getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categorias categoria) {
+
+    }
+
     @OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
 
     @JsonIgnore
