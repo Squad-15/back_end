@@ -1,8 +1,10 @@
 package com.jota_nunes_back_end.jotanunes.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "categoria_usuario")
 public class CategoriaUsuario {
     @Id

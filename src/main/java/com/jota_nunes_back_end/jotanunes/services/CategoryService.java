@@ -20,7 +20,7 @@ public class CategoryService {
 
     public Categorias findById(Long id) {
         return (Categorias) categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
+                .orElseThrow(() -> new RuntimeException("Categoria nao encontrada"));
     }
 
 
@@ -37,9 +37,5 @@ public class CategoryService {
 
     public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
-    }
-
-    public Optional<Categorias> listPerUser(Long userId) {
-        return categoryRepository.findById(userId);
     }
 }
