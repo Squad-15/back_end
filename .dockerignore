@@ -1,0 +1,29 @@
+# Arquivos e diretórios a serem ignorados pelo Docker build
+
+# Arquivos e diretórios Git
+.git
+.gitignore
+
+# Arquivos gerados em tempo de build
+target/
+!target/*.jar
+
+# IDEs e editores
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+
+# Logs e arquivos temporários
+logs/
+*.log
+*.tmp
+
+# Outros
+README.md
+DOCKER.md
+docker-compose.yml
