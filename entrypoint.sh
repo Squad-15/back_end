@@ -1,24 +1,26 @@
 #!/bin/sh
+set -e
 
-echo "Aguardando o RabbitMQ iniciar..."
-sleep 10
+echo "Verificando conexão com o RabbitMQ..."
+until nc -z rabbitmq 5672; do
+  echo "RabbitMQ ainda não está disponível - aguardando"
+  sleep 2
+done
+echo "RabbitMQ está disponível"
 
-# Verificar conexão com o PostgreSQL
+# Verificar conexão com o PostgreSQL (Supabase)
 echo "Verificando conexão com o banco de dados PostgreSQL (Supabase)..."
 MAX_RETRIES=30
 RETRY_INTERVAL=5
 COUNTER=0
 
-# As ferramentas já estão instaladas no Dockerfile, então não precisamos instalar novamente aqui
-
 # Verificar resolução de DNS
 echo "Verificando resolução de DNS para o host do banco..."
-nslookup aws-0-sa-east-1.pooler.supabase.com || true
-host aws-0-sa-east-1.pooler.supabase.com || true
+nslookup aws-0-sa-east-1.pooler.supabase.com || echo "Não foi possível resolver o DNS"
 
 # Verificar conectividade de rede
 echo "Verificando conectividade de rede..."
-ping -c 3 aws-0-sa-east-1.pooler.supabase.com || true
+ping -c 3 aws-0-sa-east-1.pooler.supabase.com || echo "Ping falhou, mas isso pode ser normal"
 
 echo "Tentando conexão com o banco de dados... Isso pode levar algum tempo."
 until PGPASSWORD=0uxfUlLPKfYYx15b psql -h aws-0-sa-east-1.pooler.supabase.com -p 6543 -U postgres.wrkrpvpcftsievtpkezf -c '\q' > /dev/null 2>&1 || [ $COUNTER -eq $MAX_RETRIES ]; do

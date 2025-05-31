@@ -5,13 +5,16 @@ WORKDIR /workspace/app
 COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
+
+# Baixar dependências primeiro (para melhor uso do cache em builds futuros)
+RUN chmod +x ./mvnw
+RUN ./mvnw dependency:go-offline -B
+
+# Copiar código-fonte
 COPY src src
 
-# Tornar o script mvnw executável
-RUN chmod +x ./mvnw
-
 # Gerar o jar
-RUN ./mvnw install -DskipTests
+RUN ./mvnw package -DskipTests
 
 # Estágio de runtime
 FROM eclipse-temurin:17-jre
