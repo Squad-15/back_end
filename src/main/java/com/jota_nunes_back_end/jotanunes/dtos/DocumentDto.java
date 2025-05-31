@@ -1,6 +1,7 @@
 package com.jota_nunes_back_end.jotanunes.dtos;
 
 import com.jota_nunes_back_end.jotanunes.models.Documento;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
