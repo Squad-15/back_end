@@ -27,8 +27,8 @@ public class DocumentService {
 
         documento.setTitulo(documentoData.getTitulo());
         documento.setDescription(documentoData.getDescription());
-        documento.setUrl_video(documentoData.getUrl_video());
-        documento.setUrl_photo(documentoData.getUrl_photo());
+        documento.setUrlVideo(documentoData.getUrlVideo());
+        documento.setUrlPhoto(documentoData.getUrlPhoto());
         documento.setOrdem(documentoData.getOrdem());
         documento.setTipo(documentoData.getTipo());
         return documentRepository.save(documento);
