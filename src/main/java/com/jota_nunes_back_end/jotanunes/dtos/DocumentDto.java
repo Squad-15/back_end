@@ -17,8 +17,8 @@ public class DocumentDto {
         this.id = documento.getId();
         this.titulo = documento.getTitulo();
         this.description = documento.getDescription();
-        this.url_video = documento.getUrl_video();
-        this.url_photo = documento.getUrl_photo();
+        this.url_video = documento.getUrlVideo();
+        this.url_photo = documento.getUrlPhoto();
         this.ordem = documento.getOrdem();
         this.tipo = documento.getTipo();
     }

@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+// @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -29,4 +29,36 @@ public class Alternativas {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_questao")
     private Questao questao;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+
+    public Boolean getCorreta() {
+        return correta;
+    }
+
+    public void setCorreta(Boolean correta) {
+        this.correta = correta;
+    }
+
+    public Questao getQuestao() {
+        return questao;
+    }
+
+    public void setQuestao(Questao questao) {
+        this.questao = questao;
+    }
 }

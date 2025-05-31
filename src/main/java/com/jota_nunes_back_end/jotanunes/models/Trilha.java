@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
-@Data
+// @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -32,4 +32,44 @@ public class Trilha {
 
     @OneToMany(mappedBy = "trilha", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TrilhaModulo> modulos;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<CategoriaTrilha> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(Set<CategoriaTrilha> categorias) {
+        this.categorias = categorias;
+    }
+
+    public Set<TrilhaModulo> getModulos() {
+        return modulos;
+    }
+
+    public void setModulos(Set<TrilhaModulo> modulos) {
+        this.modulos = modulos;
+    }
 }

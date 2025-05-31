@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
-@Data
+// @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -23,6 +23,22 @@ public class Questionario {
 
     @Column(name = "tipo", length = 100)
     private String type;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     @OneToMany(mappedBy = "questionario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Questao> questoes;

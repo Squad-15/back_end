@@ -1,15 +1,12 @@
 package com.jota_nunes_back_end.jotanunes.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-@Data
+//@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -20,14 +17,24 @@ public class Categorias {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
-    private Integer id_categoria;
+    private Integer idCategoria;
 
     @Column(name = "nome", nullable = false, length = 100)
     private String name;
 
-//    @OneToMany(mappedBy = "categorias")
-//    @JsonIgnore
-//    private List<CategoriaUsuario> categoriaUsuarios;
+    public Integer getIdCategoria() {
+        return idCategoria;
+    }
 
-//    public void setUser(UserAccount user) {}
+    public void setIdCategoria(Integer idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

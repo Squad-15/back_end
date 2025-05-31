@@ -9,7 +9,7 @@ public class CategoryDto {
     private String name;
 
     public CategoryDto(Categorias categorias) {
-        this.id = categorias.getId_categoria();
+        this.id = categorias.getIdCategoria();
         this.name = categorias.getName();
     }
 }

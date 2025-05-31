@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+// @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -26,4 +26,28 @@ public class ModuloDocumento {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_documento", nullable = false)
     private Documento documento;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Modulo getModulo() {
+        return modulo;
+    }
+
+    public void setModulo(Modulo modulo) {
+        this.modulo = modulo;
+    }
+
+    public Documento getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(Documento documento) {
+        this.documento = documento;
+    }
 }
