@@ -45,9 +45,11 @@ public class UserAccount implements UserDetails {
     @Enumerated(EnumType.STRING)
     private RoleUser roleUser;
 
+    private String urlPicture;
+
     public UserAccount() {}
 
-    public UserAccount(String firstName, String lastName, String email, String numberRegister, String password, String phone, RoleUser roleUser) {
+    public UserAccount(String firstName, String lastName, String email, String numberRegister, String password, String phone, RoleUser roleUser, String urlPicture) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -55,6 +57,7 @@ public class UserAccount implements UserDetails {
         this.password = password;
         this.phone = phone;
         this.roleUser = roleUser;
+        this.urlPicture = urlPicture;
     }
 
     public long getId() {
@@ -79,6 +82,14 @@ public class UserAccount implements UserDetails {
 
     public void setNumberRegister(String numberRegister) {
         this.numberRegister = numberRegister;
+    }
+
+    public String getUrlPicture() {
+        return urlPicture;
+    }
+
+    public void setUrlPicture(String urlPicture) {
+        this.urlPicture = urlPicture;
     }
 
     @Override

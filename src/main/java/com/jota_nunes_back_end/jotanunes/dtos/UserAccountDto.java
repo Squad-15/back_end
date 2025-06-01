@@ -9,6 +9,7 @@ public class UserAccountDto {
     public String lastName;
     public String email;
     public String phone;
+    public String urlPicture;
     public RoleUser roleUser;
 
     public ProfileName cargo;
