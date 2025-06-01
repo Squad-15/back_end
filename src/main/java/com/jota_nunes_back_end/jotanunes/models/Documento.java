@@ -3,10 +3,8 @@ package com.jota_nunes_back_end.jotanunes.models;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

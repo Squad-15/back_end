@@ -57,20 +57,6 @@ public class CategoryPathController {
         return ResponseEntity.ok("Categoria associada à trilha com sucesso.");
     }
 
-//    @DeleteMapping("/{categoryId}")
-//    public ResponseEntity<String> deleteCategory(@PathVariable Long trilhaId, @PathVariable Long categoryId) {
-//        CategoriaTrilha categoriaTrilha = new CategoriaTrilha();
-//        categoriaTrilha.setTrilha(trilhaId);
-//        categoriaTrilha.setCategoria(categoryId);
-//
-//        if(!categoryPathRepository.existsById(categoryId)) {
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//        categoryPathRepository.delete(categoriaTrilha);
-//        return ResponseEntity.ok("Categoria apagada com sucesso.");
-//    }
-
     @DeleteMapping("/{categoryId}")
     public ResponseEntity<String> deleteCategory(@PathVariable Long trilhaId, @PathVariable Long categoryId) {
         Optional<Trilha> trilhaOpt = trilhaRepository.findById(trilhaId);
