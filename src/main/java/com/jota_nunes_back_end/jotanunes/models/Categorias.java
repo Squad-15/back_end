@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,17 +16,17 @@ public class Categorias {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
-    private Integer idCategoria;
+    private Integer id;
 
     @Column(name = "nome", nullable = false, length = 100)
     private String name;
 
     public Integer getIdCategoria() {
-        return idCategoria;
+        return id;
     }
 
     public void setIdCategoria(Integer idCategoria) {
-        this.idCategoria = idCategoria;
+        this.id = idCategoria;
     }
 
     public String getName() {

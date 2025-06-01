@@ -22,8 +22,13 @@ public class CategoryUserService {
         return categoryUserRepository.save(categoriaUsuario);
     }
 
+    @Transactional
+    public void deleteAssociation(Long userAccountCategoryId) {
+        categoryUserRepository.deleteById(userAccountCategoryId);
+    }
 
+    @Transactional
     public List<CategoriaUsuario> listPerUser(Long userId) {
-        return categoryUserRepository.findByUserAccountId(userId);
+        return categoryUserRepository.findByUserAccount_Id(userId);
     }
 }

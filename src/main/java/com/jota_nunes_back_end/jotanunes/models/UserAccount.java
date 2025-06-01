@@ -170,12 +170,7 @@ public class UserAccount implements UserDetails {
         return categoria;
     }
 
-    public void setCategoria(Categorias categoria) {
-
-    }
-
-    @OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
-
+    @OneToMany(mappedBy = "userAccount")
     @JsonIgnore
     private List<CategoriaUsuario> categoriaUsuarios;
 }
