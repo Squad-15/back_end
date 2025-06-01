@@ -1,77 +1,74 @@
 package com.jota_nunes_back_end.jotanunes.controllers;
 
-import com.jota_nunes_back_end.jotanunes.models.CategoriaUsuario;
 import com.jota_nunes_back_end.jotanunes.models.Categorias;
 import com.jota_nunes_back_end.jotanunes.models.UserAccount;
 import com.jota_nunes_back_end.jotanunes.repositories.CategoryRepository;
-import com.jota_nunes_back_end.jotanunes.repositories.CategoryUserRepository;
 import com.jota_nunes_back_end.jotanunes.repositories.UserAccountRepository;
-import com.jota_nunes_back_end.jotanunes.services.CategoryService;
 import com.jota_nunes_back_end.jotanunes.services.CategoryUserService;
-import com.jota_nunes_back_end.jotanunes.services.UserAccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/user/{userId}/categories")
+@RequestMapping("/user")
 public class CategoriesUserController {
+
     private final UserAccountRepository userAccountRepository;
     private final CategoryRepository categoryRepository;
-    private final CategoryUserRepository categoryUserRepository;
-    private  CategoryService categoryService;
-
     private final CategoryUserService categoryUserService;
 
-    public CategoriesUserController(CategoryService categoryService,
-                                    UserAccountRepository userAccountRepository,
-                                    CategoryRepository categoryRepository,
-                                    CategoryUserRepository categoryUserRepository,
-                                    CategoryUserService categoryUserService) {
-        this.categoryService = categoryService;
+    public CategoriesUserController(UserAccountRepository userAccountRepository,
+                                    CategoryRepository categoryRepository, CategoryUserService categoryUserService) {
         this.userAccountRepository = userAccountRepository;
         this.categoryRepository = categoryRepository;
-        this.categoryUserRepository = categoryUserRepository;
         this.categoryUserService = categoryUserService;
     }
 
-
-
-//    @GetMapping
-//    public Optional<CategoriaUsuario> getCategories(@PathVariable int userId){
-//        return categoryUserService.listPerUser(Long.valueOf(userId));
-//    }
-
-    @GetMapping
-    public ResponseEntity<List<CategoriaUsuario>> getCategories(@PathVariable int userId){
-        List<CategoriaUsuario> categoriaUsuarios = categoryUserService.listPerUser(Long.valueOf(userId));
-        return ResponseEntity.ok(categoriaUsuarios);
-    }
-
-    @PostMapping("/{categoryId}")
-    public ResponseEntity<?> associateUserToCategory(@PathVariable Long userId, @PathVariable Long categoryId) {
+    @PostMapping("/{userId}/categoria/{categoriaId}")
+    public ResponseEntity<String> associarCategoriaAoUsuario(@PathVariable Long userId,
+                                                             @PathVariable Integer categoriaId) {
         Optional<UserAccount> userOpt = userAccountRepository.findById(userId);
-        Optional<Categorias> categoryOpt = categoryRepository.findById(categoryId);
+        Optional<Categorias> categoriaOpt = categoryRepository.findById(Long.valueOf(categoriaId));
 
-        if (userOpt.isEmpty() || categoryOpt.isEmpty()) {
+        if (userOpt.isEmpty() || categoriaOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
         UserAccount user = userOpt.get();
-        Categorias categoria = categoryOpt.get();
+        user.setCategoria(categoriaOpt.get());
+        userAccountRepository.save(user);
 
-        CategoriaUsuario categoriaUsuario = new CategoriaUsuario();
-        categoriaUsuario.setUserAccount(user);
-        categoriaUsuario.setCategorias(categoria);
+        return ResponseEntity.ok("Categoria associada ao usuário com sucesso.");
+    }
 
-        categoryUserService.associateUserToCategory(categoriaUsuario);
+    @GetMapping("/{userId}/categoria")
+    public ResponseEntity<Object> buscarCategoriaDoUsuario(@PathVariable Long userId) {
+        Optional<UserAccount> userOpt = userAccountRepository.findById(userId);
 
-        return ResponseEntity.ok("Categoria associada");
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
+        Categorias categoria = userOpt.get().getCategoria();
+
+        if (categoria == null) {
+            return ResponseEntity.ok().body(Map.of());
+        }
+
+        return ResponseEntity.ok(categoria);
+    }
+
+    @DeleteMapping("/{userId}/categoria")
+    public ResponseEntity<String> removerCategoria(@PathVariable Long userId) {
+        boolean removido = categoryUserService.removerCategoriaDoUsuario(userId);
+
+        if (removido) {
+            return ResponseEntity.ok("Associação removida com sucesso.");
+        } else {
+            return ResponseEntity.status(404).body("Usuário não encontrado.");
+        }
     }
 
 }

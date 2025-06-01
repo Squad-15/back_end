@@ -1,9 +1,7 @@
 package com.jota_nunes_back_end.jotanunes.services;
 
 import com.jota_nunes_back_end.jotanunes.models.CategoriaTrilha;
-import com.jota_nunes_back_end.jotanunes.models.CategoriaUsuario;
 import com.jota_nunes_back_end.jotanunes.repositories.CategoryPathRepository;
-import com.jota_nunes_back_end.jotanunes.repositories.CategoryRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
