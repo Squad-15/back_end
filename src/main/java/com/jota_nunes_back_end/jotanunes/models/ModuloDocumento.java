@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -23,7 +22,7 @@ public class ModuloDocumento {
     @JoinColumn(name = "id_modulo", nullable = false)
     private Modulo modulo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_documento", nullable = false)
     private Documento documento;
 
