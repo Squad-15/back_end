@@ -5,6 +5,7 @@ import com.jota_nunes_back_end.jotanunes.enums.RoleUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +14,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Data
 @Table (name = "user_account")
 public class UserAccount implements UserDetails {
     @Id
@@ -169,8 +171,4 @@ public class UserAccount implements UserDetails {
     public Categorias getCategoria() {
         return categoria;
     }
-
-    @OneToMany(mappedBy = "userAccount")
-    @JsonIgnore
-    private List<CategoriaUsuario> categoriaUsuarios;
 }
