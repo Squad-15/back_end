@@ -1,8 +1,10 @@
 package com.jota_nunes_back_end.jotanunes.models;
 
+import com.jota_nunes_back_end.jotanunes.enums.StatusProgresso;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,8 +28,12 @@ public class StatusModuloUsuario {
     @JoinColumn(name = "id_usuario", nullable = false)
     private UserAccount userAccount;
 
-    @Column(name = "status", length = 50)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private StatusProgresso status;
+
+    @Column(name = "percentual_concluido")
+    private Double percentualConcluido;
 
     @Column(name = "data_conclusao")
     private LocalDate dataConclusao;
@@ -35,4 +41,9 @@ public class StatusModuloUsuario {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_modulo")
     private Modulo modulo;
+
+    public void setDataConclusao(LocalDateTime now) {
+        this.dataConclusao = now.toLocalDate();
+    }
+
 }
