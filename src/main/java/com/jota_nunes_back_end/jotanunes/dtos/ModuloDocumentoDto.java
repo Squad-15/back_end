@@ -13,7 +13,6 @@ public class ModuloDocumentoDto {
     private Integer order;
     private Integer amountPoints;
     private String type;
-
     private String nameModulo;
 
     public ModuloDocumentoDto(ModuloDocumento moduloDocumento) {
