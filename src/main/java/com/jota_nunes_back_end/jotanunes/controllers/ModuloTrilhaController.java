@@ -63,23 +63,6 @@ public class ModuloTrilhaController {
         return ResponseEntity.ok("Módulo associado à trilha com sucesso.");
     }
 
-//    @DeleteMapping("/{moduloId}")
-//    public ResponseEntity<String> deleteModulo(@PathVariable Long trilhaId, @PathVariable Long moduloId) {
-//        Optional<Trilha> trilhaOpt = trilhaRepository.findById(trilhaId);
-//        Optional<Modulo> moduloOpt = moduloRepository.findById(moduloId);
-//
-//        if (trilhaOpt.isEmpty() || moduloOpt.isEmpty()) {
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//        TrilhaModulo moduloTrilha = new TrilhaModulo();
-//        moduloTrilha.setTrilha(trilhaOpt.get());
-//        moduloTrilha.setModulo(moduloOpt.get());
-//
-//        moduloTrilhaRepository.delete(moduloTrilha);
-//        return ResponseEntity.ok("Módulo removido da trilha com sucesso.");
-//    }
-
     @DeleteMapping("/{moduloId}")
     public ResponseEntity<String> deleteModulo(@PathVariable Long trilhaId, @PathVariable Long moduloId) {
         Optional<TrilhaModulo> trilhaModulo = moduloTrilhaRepository.findByTrilhaIdAndModuloId(trilhaId, moduloId);
