@@ -34,6 +34,7 @@ public class UserAccountService {
         user.setEmail(userAccountDto.email);
         user.setPhone(userAccountDto.phone);
         user.setRoleUser(userAccountDto.roleUser);
+        user.setUrlPicture(userAccountDto.urlPicture);
 
         // generate register number
         String nextRegisterNumber = generateNextRegisterNumber();
