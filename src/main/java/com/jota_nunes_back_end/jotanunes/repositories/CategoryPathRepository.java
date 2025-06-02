@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CategoryPathRepository extends JpaRepository<CategoriaTrilha, Long> {
     List<CategoriaTrilha> findByTrilha_Id(Long categoryId);
+    List<CategoriaTrilha> findByCategoria_Id(Long categoriaId);
 }
