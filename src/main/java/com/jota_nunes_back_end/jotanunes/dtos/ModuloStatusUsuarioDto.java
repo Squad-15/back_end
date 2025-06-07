@@ -12,12 +12,4 @@ public class ModuloStatusUsuarioDto {
     private Integer moduloId;
     private String status;
     private Double percentage;
-
-//    public ModuloStatusUsuarioDto(StatusModuloUsuario statusModuloUsuario) {
-//        this.idStatus = Long.valueOf(statusModuloUsuario.getId());
-//        this.userId = statusModuloUsuario.getUserAccount().getId();
-//        this.moduloId = Math.toIntExact(statusModuloUsuario.getModulo().getId());
-//        this.status = statusModuloUsuario.getStatus();
-//        this.percentage = statusModuloUsuario.getPercentualConcluido();
-//    }
 }

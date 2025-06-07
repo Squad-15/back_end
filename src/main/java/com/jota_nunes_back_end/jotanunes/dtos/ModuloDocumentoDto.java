@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class ModuloDocumentoDto {
     private int idModuloDocumento;
+    private int idModulo;
     private String title;
     private String description;
     private String urlPicture;
@@ -25,5 +26,6 @@ public class ModuloDocumentoDto {
         this.type = moduloDocumento.getDocumento().getTipo();
         this.nameModulo = moduloDocumento.getModulo().getName();
         this.amountPoints = moduloDocumento.getDocumento().getQtdPontos();
+        this.idModulo = moduloDocumento.getModulo().getId();
     }
 }
