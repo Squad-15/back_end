@@ -1,31 +1,10 @@
-version: "3.8"
-
 services:
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: jotanunes-rabbitmq
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    networks:
-      - jotanunes-network
-    volumes:
-      - rabbitmq-data:/var/lib/rabbitmq
-    healthcheck:
-      test: ["CMD", "rabbitmqctl", "status"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   app:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: jotanunes-app
     restart: unless-stopped
-    depends_on:
-      rabbitmq:
-        condition: service_healthy
     environment:
       - JWT_SECRET=my-secret-key
       - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
@@ -33,7 +12,7 @@ services:
       - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
       - SUPABASE_PASSWORD=${SUPABASE_PASSWORD}
     ports:
-      - "8080:8080" # Mudando a porta no host para 8081 para evitar conflitos
+      - "8080:8080"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 15s
@@ -45,7 +24,3 @@ services:
 networks:
   jotanunes-network:
     driver: bridge
-
-volumes:
-  rabbitmq-data:
-    driver: local
