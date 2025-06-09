@@ -13,6 +13,7 @@ public class DocumentDto {
     private String url_photo;
     private Integer ordem;
     private String tipo;
+    private String points;
 
     public DocumentDto(Documento documento) {
         this.id = documento.getId();
@@ -22,5 +23,6 @@ public class DocumentDto {
         this.url_photo = documento.getUrlPhoto();
         this.ordem = documento.getOrdem();
         this.tipo = documento.getTipo();
+        this.points = String.valueOf(documento.getQtdPontos());
     }
 }
