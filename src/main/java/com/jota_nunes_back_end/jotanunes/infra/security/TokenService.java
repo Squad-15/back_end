@@ -73,7 +73,7 @@ public class TokenService {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             String token = JWT.create()
                     .withIssuer("auth-api")
-                    .withSubject(userAccount.getNumberRegister()) // matrícula
+                    .withSubject(userAccount.getNumberRegister())
                     .withClaim("id", userAccount.getId())
                     .withClaim("roleUser", userAccount.getRoleUser().name())
                     .withExpiresAt(genExpirationDate())
@@ -91,7 +91,7 @@ public class TokenService {
                     .withIssuer("auth-api")
                     .build()
                     .verify(token)
-                    .getSubject(); // retorna a matrícula
+                    .getSubject();
         } catch (JWTVerificationException exception) {
             return "";
         }
