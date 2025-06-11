@@ -1,118 +1,118 @@
-# 🛠️ Fluxo de Trabalho
+# 🚀 Plataforma de Treinamento Interno — Backend
 
-1. ✅ **Clonar o repositório do GitHub**
+Este repositório contém o **backend** da plataforma de treinamento interno da empresa **Jota Nunes**. Ele é responsável por toda a lógica de negócio, autenticação, persistência de dados e integração com o front-end da aplicação.
 
-   Clona o projeto completo do GitHub para sua máquina:
-   ```bash
-   git clone https://github.com/Squad-15/back_end.git
-   ```
+## 📖 Sobre o Projeto
 
-2. 🌿 **Criar uma nova branch para sua tarefa**
+O backend foi desenvolvido para dar suporte à plataforma de treinamentos, garantindo segurança, performance e escalabilidade.  
+Através de uma API REST, é possível gerenciar usuários, módulos, trilhas de aprendizado, progresso individual e autenticação com base em tokens.
 
-   Cria uma nova branch (cópia separada da main) e troca para ela:
-   ```bash
-   git checkout -b feature/nome-da-tarefa
-   ```
+## 📌 Tecnologias Utilizadas
 
-3. ✍️ **Fazer alterações no código**
+O projeto foi desenvolvido com as seguintes tecnologias e ferramentas:
 
-   Faça as implementações da sua funcionalidade ou correção.
+- **[Java 17+](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)** — Linguagem robusta e multiplataforma utilizada no desenvolvimento backend
+- **[Spring Boot](https://spring.io/projects/spring-boot)** — Framework para construção de APIs e microserviços de forma produtiva
+- **[Spring Data JPA](https://spring.io/projects/spring-data-jpa)** — Abstração para acesso a dados com ORM (Hibernate)
+- **[Hibernate](https://hibernate.org/)** — Framework ORM para persistência de dados em banco relacional
+- **[Spring Security](https://spring.io/projects/spring-security)** — Gerenciamento de autenticação, autorização e segurança
+- **[Spring Boot Starter Validation](https://spring.io/guides/gs/validating-form-input/)** — Validação de dados via anotações (JSR-380, Bean Validation)
+- **[Spring Boot Starter Mail](https://spring.io/guides/gs/sending-email/)** — Envio de e-mails via SMTP configurável
+- **[Spring Boot Starter AMQP](https://spring.io/projects/spring-amqp)** — Integração com RabbitMQ para mensageria
+- **[PostgreSQL](https://www.postgresql.org/)** — Banco de dados relacional utilizado para persistência (em runtime)
+- **[Lombok](https://projectlombok.org/)** — Redução de código boilerplate com anotações simples (getters/setters, construtores)
+- **[Java JWT (com.auth0)](https://github.com/auth0/java-jwt)** — Biblioteca para criação e validação de JSON Web Tokens (JWT)
+- **[SpringDoc OpenAPI](https://springdoc.org/)** — Geração automática de documentação OpenAPI (Swagger UI)
+- **[Cloudinary HTTP44](https://cloudinary.com/documentation/java_integration)** — Integração para upload e gerenciamento de imagens na nuvem Cloudinary
+- **[Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools)** — Ferramentas para melhorar a experiência de desenvolvimento (hot reload)
+- **[Spring Dotenv](https://github.com/paulschwarz/spring-dotenv)** — Carregamento de variáveis de ambiente de arquivos `.env` para Spring Boot
 
-4. 🧪 **Testar localmente e validar que está tudo certo**
 
-   Certifique-se de que o código está funcionando antes de subir.
-
-5. 💾 **Adicionar e commitar as mudanças**
-
-   Salva suas alterações no histórico do Git:
-   ```bash
-   git add .                             # Adiciona todos os arquivos modificados
-   git commit -m "feat: descrição clara" # Cria um ponto de salvamento com uma mensagem
-   ```
-
-6. 🔄 **Atualizar com as mudanças da `main`**
-
-   Garante que sua branch está atualizada com as últimas mudanças da `main`:
-   ```bash
-   git pull origin main  # Puxa as últimas atualizações da branch main do GitHub
-   ```
-
-7. ⚔️ **Resolver conflitos (se houver)**
-
-   Se houver alterações no mesmo trecho de código, resolva manualmente e faça um novo commit.
-
-8. 📤 **Enviar a branch para o GitHub**
-
-   Sobe sua branch para o repositório remoto:
-   ```bash
-   git push origin feature/nome-da-tarefa
-   ```
-
-9. 🔁 **Criar um Pull Request (PR)**
-
-   Acesse o link abaixo e crie um PR da sua branch para a `main`:  
-   [https://github.com/Squad-15/back_end/pulls](https://github.com/Squad-15/back_end/pulls)
-
-10. 👀 **Aguardar a revisão do time**
-
-    Alguém do time revisa e aprova o código.
-
-11. ✅ **Após aprovação, fazer o merge com a `main`**
-
-    Isso pode ser feito direto pelo GitHub, clicando em **"Merge Pull Request"**.
-
-12. 🧹 **Excluir a branch (se não for mais necessária)**
-
-    Você pode excluir a branch pelo GitHub ou pelo terminal:
-   ```bash
-   git branch -d feature/nome-da-tarefa # Deleta localmente
-   ```
+## 📁 Estrutura do Projeto
 
 ```bash
-🏁 FIM
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── jota_nunes/
+│   │   │           ├── controller/        # Controladores REST (endpoints)
+│   │   │           ├── service/           # Camada de serviço com regras de negócio
+│   │   │           ├── model/             # Entidades JPA (tabelas do banco)
+│   │   │           ├── repository/        # Interfaces de acesso ao banco (Spring Data JPA)
+│   │   │           ├── security/          # Configuração de autenticação e autorização
+│   │   │           └── dto/               # Data Transfer Objects (entrada e saída da API)
+│   │   └── resources/
+│   │       ├── application.properties     # Configurações da aplicação (DB, JWT, etc.)
+│   │       └── db/migration/              # Arquivos de migração do Flyway
+└── pom.xml                               # Arquivo de configuração Maven
 ```
 
----
+## 🛠️ Como Rodar o Projeto
 
-## 🔧 Convenções para mensagens de commit
-
-Use o padrão `tipo: descrição`. Exemplos:
-
-- `feat: adiciona tela de login`
-- `fix: corrige bug no botão de logout`
-- `docs: atualiza README com instruções`
-- `refactor: simplifica função de autenticação`
-
-Tipos comuns:
-- `feat`: nova funcionalidade
-- `fix`: correção de bug
-- `docs`: documentação
-- `style`: formatação (sem mudanças de lógica)
-- `refactor`: refatoração de código
-- `test`: testes adicionados ou corrigidos
-- `chore`: tarefas gerais (build, CI, etc)
-
----
-
-## ✏️ Convenções de nome de branch
-
-- `feature/nome-da-funcionalidade`
-- `bugfix/nome-do-bug`
-- `hotfix/correção-urgente`
-
----
-
-## 📌 Dica: mantenha sua branch sempre atualizada com a `main`
-
-Manter sua branch atualizada evita conflitos e garante que você esteja trabalhando com a versão mais recente:
-
+### 1. Clone o Repositório
 ```bash
-git checkout main       # Vai para a branch main
-git pull origin main    # Baixa as atualizações do GitHub
-git checkout sua-branch # Volta para sua branch
-git merge main          # Mescla as mudanças da main na sua branch
+git clone https://github.com/Squad-15/back_end.git
 ```
+
+### 2. Acesse o diretório
+```bash
+cd squad_15_jota_nunes_back
+```
+
+### 3. Adicione no application.properties suas credenciais do banco
+```bash
+spring.datasource.url=jdbc:postgresql://localhost:5432/<NOME_DO_BANCO>
+spring.datasource.username=<SEU_USUARIO>
+spring.datasource.password=<SUA_SENHA>
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+```
+
+### 4. Rode a aplicação
+```bash
+./mvnw spring-boot:run
+```
+
+### 5. A Aplicação ficará disponível em: **http://localhost:8080**
+
+## 📦 Endpoints Principais
+
+- **POST /auth/login — Autenticação e geração de token**
+- **POST /auth/register — Criação de usuários**
+- **GET /users/all — Listagem de usuários**
+- **GET /path — Listagem de trilhas**
+- **POST /modulo — Cadastro de módulos de treinamento**
+
+## 👥 Autores e Colaboradores
+
+Agradecemos a todos que contribuíram para o desenvolvimento deste projeto:
+
+### 🎨 Prototipação
+- **Adrya Kauane**  
+  Responsável pela criação dos protótipos e definição da experiência do usuário (UX/UI).  
+
+### 📚 Documentação e Modelagem de Banco
+- **Austin Manoel**  
+  Estruturação do README, escrita de manuais de uso, organização da documentação técnica  
+  e participação na modelagem do banco de dados.
+
+### 💻 Front-End e Back-End
+- **Icaro Ryan**  
+  Desenvolvimento da interface (front-end), roteamento com Next.js e desenvolvimento da lógica de negócio/API (back-end).
+
+### 💻 Front-End
+- **Marcos Guilherme**  
+  Implementação de telas, estilização com Tailwind CSS e componentes em React.
+
+### 🚀 DevOps / Deploy e Modelagem de Banco
+- **Christopher Edlly**  
+  Configuração e deploy da aplicação em ambiente de produção, além da participação na modelagem do banco de dados.
 
 ---
 
-> Para mais dicas, veja a [documentação oficial do Git](https://git-scm.com/doc) ou [Guia do GitHub](https://docs.github.com/pt/get-started/quickstart).
+🙏 A todos que colaboraram direta ou indiretamente: **muito obrigado!**
