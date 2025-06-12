@@ -26,9 +26,9 @@ public class UserAuthController {
     private TokenService tokenService;
 
     @PostMapping("/register")
-    public ResponseEntity<UserAccount> createUser(@RequestBody @Valid UserAccountDto userAccountDto) {
+    public ResponseEntity<UserAccountWithPasswordDto> createUser(@RequestBody @Valid UserAccountDto userAccountDto) {
         try {
-            UserAccount created = userAccountService.createUser(userAccountDto);
+            UserAccountWithPasswordDto created = userAccountService.createUser(userAccountDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(created);
         } catch (Exception e) {
             e.printStackTrace();

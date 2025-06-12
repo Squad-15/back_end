@@ -1,4 +1,3 @@
-// src/main/java/com/jota_nunes_back_end/jotanunes/dtos/UserAccountWithPasswordDto.java
 package com.jota_nunes_back_end.jotanunes.dtos;
 
 import com.jota_nunes_back_end.jotanunes.models.UserAccount;
