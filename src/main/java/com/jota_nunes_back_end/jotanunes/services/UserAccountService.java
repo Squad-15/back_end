@@ -28,7 +28,7 @@ public class UserAccountService {
     private PasswordEncoder passwordEncoder;
 
 
-    public UserAccount createUser(UserAccountDto userAccountDto) {
+    public UserAccountWithPasswordDto createUser(UserAccountDto userAccountDto) {
         UserAccount user = new UserAccount();
         user.setFirstName(userAccountDto.firstName);
         user.setLastName(userAccountDto.lastName);
@@ -37,18 +37,19 @@ public class UserAccountService {
         user.setRoleUser(userAccountDto.roleUser);
         user.setUrlPicture(userAccountDto.urlPicture);
 
-        // generate register number
+        // Gerar número de matrícula
         String nextRegisterNumber = generateNextRegisterNumber();
         user.setNumberRegister(nextRegisterNumber);
 
-        // generate password and Crypt
+        // Gerar senha em texto puro
         String rawPassword = passwordService.generateRandomPassword(6);
-
         System.out.println("Raw password generated: " + rawPassword);
 
+        // Criptografar a senha e salvar
         String encodedPassword = passwordEncoder.encode(rawPassword);
         user.setPassword(encodedPassword);
 
+        // Criar e salvar o perfil
         Profile profile = new Profile();
         profile.setProfileName(userAccountDto.cargo);
         profile.setDepartment(userAccountDto.departamento);
@@ -57,12 +58,15 @@ public class UserAccountService {
         profile.setLocation(userAccountDto.location);
 
         Profile savedProfile = profileRepository.save(profile);
-
         user.setProfile(savedProfile);
 
-        // save user account
-        return userAccountRepository.save(user);
+        // Salvar usuário
+        UserAccount savedUser = userAccountRepository.save(user);
+
+        // Retornar DTO com senha em texto puro
+        return new UserAccountWithPasswordDto(savedUser, rawPassword);
     }
+
 
     public List<UserAccount> getAllUser() {
        return userAccountRepository.findAll();
