@@ -15,7 +15,7 @@ public class WebConfig {
                 registry.addMapping("/**")
                         .allowedOrigins(
                                 "http://localhost:3000", // Ambiente local
-                                "https://jotanunestreinamento.netlify.app/" // Domínio hospedado
+                                "https://jotanunestreinamento.netlify.app" // Domínio hospedado
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
