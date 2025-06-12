@@ -12,8 +12,11 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // libera todos os endpoints
-                        .allowedOrigins("http://localhost:3000")
+                registry.addMapping("/**")
+                        .allowedOrigins(
+                                "http://localhost:3000", // Ambiente local
+                                "https://jotanunestreinamento.netlify.app/" // Domínio hospedado
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
