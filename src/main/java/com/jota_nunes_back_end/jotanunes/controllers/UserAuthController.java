@@ -3,6 +3,7 @@ package com.jota_nunes_back_end.jotanunes.controllers;
 import com.jota_nunes_back_end.jotanunes.dtos.AuthenticateDto;
 import com.jota_nunes_back_end.jotanunes.dtos.LoginResponseDto;
 import com.jota_nunes_back_end.jotanunes.dtos.UserAccountDto;
+import com.jota_nunes_back_end.jotanunes.dtos.UserAccountWithPasswordDto;
 import com.jota_nunes_back_end.jotanunes.infra.security.TokenService;
 import com.jota_nunes_back_end.jotanunes.models.UserAccount;
 import com.jota_nunes_back_end.jotanunes.services.UserAccountService;
