@@ -15,11 +15,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(
-        origins = "https://jotanunestreinamento.netlify.app",
-        allowCredentials = "true"
-)
-
 @RestController
 @RequestMapping("/auth")
 public class UserAuthController {
